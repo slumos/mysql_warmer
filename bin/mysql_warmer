@@ -55,8 +55,8 @@ module MysqlSpammer
   end
   
   def unbind
-    return if @query.empty?
-  
+    return if @query.empty? or @query !~ /^select/i
+
     puts @query.inspect if @options[:verbose]
     SQL.raw(@query) {}
   end
